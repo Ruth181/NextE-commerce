@@ -4,7 +4,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export const CategoryCarousel : FC = () => {
+type Props = {
+
+}
+export const CategoryCarousel : FC<Props> = () => {
     return(
         <Fragment>
              <Swiper

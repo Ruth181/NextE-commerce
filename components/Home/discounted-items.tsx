@@ -5,9 +5,8 @@ export const DiscountedItems: FC = () => {
     return (
         <Fragment>
             <div className="container-fluid p-0 mt-5"
-                data-aos="zoom-in"
-                data-aos-delay="50"
-                data-aos-duration="500">
+                //data-aos="zoom-in"
+                >
                 <div className="row">
                     {/* <!-- 2 images on different screen dimensions --> */}
                     <div className="col-12 col-lg-7 col-xl-8 m-0 rounded-0">

@@ -2,6 +2,7 @@ import React from 'react';
 import {Search, Person, BagCheck, Bag, ChevronRight, ChevronLeft} from 'react-bootstrap-icons';
 import { NavSearchComponent } from './nav-search-component';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 export const Navbar = () => {
@@ -33,7 +34,7 @@ export const Navbar = () => {
                 <nav className="navbar navbar-expand-xl p-0">
                     <div className="container-fluid d-flex justify-content-between align-items-center">
                         <Link className="navbar-brand rounded-2 fs-4 d-xl-inline d-none" href="/">
-                            <img src="/images/siloette.jpeg" className="rounded-2" alt="" width="50" height="50" />
+                            <Image src="/siloette.jpeg" alt='' className="rounded-2" width={50} height={50} />
                         </Link>
                         {/* <!-- change positions of element in all breakpoints except xl --> */}
                         <button className="text-start navbar-toggler active shadow-none p-0 d-inline d-xl-none" 
@@ -55,7 +56,7 @@ export const Navbar = () => {
                             <div className="offcanvas-header">
                                 <p className="offcanvas-title" id="offcanvasLabel">
                                     {/* <!-- Logo for responsive Nav Drawer --> */}
-                                    <Link className="navbar-brand rounded-2 fs-4 d-inline d-xl-none" href="/index.html">
+                                    <Link className="navbar-brand rounded-2 fs-4 d-inline d-xl-none" href="/">
                                         <span className="spacing text-dark lead text_primary text-capitalize fw-semibold">Siloette</span>
                                         {/* <!-- <img src="/images/siloette.jpeg" className="rounded-2" alt="" width="40" height="40"> --> */}
                                     </Link>
@@ -79,35 +80,34 @@ export const Navbar = () => {
                                                         <div className="row">
                                                             <div className="col py-4">
                                                                 <p className="">Seating</p>
-                                                                <p><a href="#" className="list-link">In-Stock Dining</a></p>
-                                                                <p><a href="#" className="list-link">Dining Chairs</a></p>
-                                                                <p><a href="#" className="list-link">Counter Stools</a></p>
-                                                                <p><a href="#" className="list-link">Barstools</a></p>
-                                                                <p><a href="#" className="list-link">Dining Benches</a></p>
+                                                                <p><Link href="#" className="list-link">In-Stock Dining</Link></p>
+                                                                <p><Link href="#" className="list-link">Dining Chairs</Link></p>
+                                                                <p><Link href="#" className="list-link">Counter Stools</Link></p>
+                                                                <p><Link href="#" className="list-link">Barstools</Link></p>
+                                                                <p><Link href="#" className="list-link">Dining Benches</Link></p>
                                                             </div>
                                                             <div className="col py-4">
                                                                 <p className="">TABLES & STORAGE</p>
-                                                                <p><a href="#" className="list-link">Dining Tables</a></p>
-                                                                <p><a href="#" className="list-link">Buffets, Sideboards, & Hutches</a></p>
-                                                                <p><a href="#" className="list-link">Bar & Counter Tables</a></p>
-                                                                <p><a href="#" className="list-link">Touch Up Kits</a></p>
-                                                                <p><a href="#" className="list-link">Dining Benches</a></p>
+                                                                <p><Link href="#" className="list-link">Dining Tables</Link></p>
+                                                                <p><Link href="#" className="list-link">Buffets, Sideboards, & Hutches</Link></p>
+                                                                <p><Link href="#" className="list-link">Bar & Counter Tables</Link></p>
+                                                                <p><Link href="#" className="list-link">Touch Up Kits</Link></p>
+                                                                <p><Link href="#" className="list-link">Dining Benches</Link></p>
                                                             </div>
                                                             <div className="col py-4">
                                                                 <p className="">TABLES & STORAGE</p>
-                                                                <p><a href="#" className="list-link">Dining Tables</a></p>
-                                                                <p><a href="#" className="list-link">Buffets, Sideboards, & Hutches</a></p>
-                                                                <p><a href="#" className="list-link">Bar & Counter Tables</a></p>
-                                                                <p><a href="#" className="list-link">Touch Up Kits</a></p>
-                                                                <p><a href="#" className="list-link">Dining Benches</a></p>
+                                                                <p><Link href="#" className="list-link">Dining Tables</Link></p>
+                                                                <p><Link href="#" className="list-link">Buffets, Sideboards, & Hutches</Link></p>
+                                                                <p><Link href="#" className="list-link">Bar & Counter Tables</Link></p>
+                                                                <p><Link href="#" className="list-link">Touch Up Kits</Link></p>
+                                                                <p><Link href="#" className="list-link">Dining Benches</Link></p>
                                                             </div>
                                                             {/* <!-- product image here --> */}
                                                             <div className="col">
-                                                                <img
-                                                                    src="https://cld.accentuate.io/263881883819/1661169627845/Nav_Desktop_AccentChairs_430x350.jpg?v=1672144948401&options=w_430"
-                                                                    alt=""
+                                                                <object
+                                                                    data="https://cld.accentuate.io/263881883819/1661169627845/Nav_Desktop_AccentChairs_430x350.jpg?v=1672144948401&options=w_430"
                                                                     className="img-thumbnail p-0 border-0 rounded-0 w-100" />
-                                                                <a
+                                                                <Link
                                                                     href="#"
                                                                     className="text-dark"
                                                                     style={{
@@ -116,7 +116,7 @@ export const Navbar = () => {
                                                                         fontWeight: '600'
                                                                     }}>
                                                                     <span>Shop items</span>
-                                                                </a>
+                                                                </Link>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,13 +133,12 @@ export const Navbar = () => {
                                             <div className="w-100 text-white" style={{
                                                 height: '35%'
                                             }}>
-                                                <img
-                                                    src="https://cdn.shopify.com/s/files/1/0507/9017/0795/collections/expl_carousel_1_2x_03bbfd23-1afe-4302-80be-a3581b92f366_302x.png?v=1672144535"
+                                                <object
+                                                    data="https://cdn.shopify.com/s/files/1/0507/9017/0795/collections/expl_carousel_1_2x_03bbfd23-1afe-4302-80be-a3581b92f366_302x.png?v=1672144535"
                                                     className="card-img h-100 rounded-0"
                                                     style={{
                                                         objectFit: 'cover',
-                                                    }}
-                                                    alt="Living" />
+                                                    }} />
                                                 <div
                                                     className="card-img-overlay text-uppercase p-2"
                                                     style={{
@@ -165,73 +164,73 @@ export const Navbar = () => {
                                             <div className="row p-4">
                                                 <div className="col border-bottom">
                                                     <p className="">Seating</p>
-                                                    <p><a href="#" className="list-link">In-Stock Dining</a></p>
-                                                    <p><a href="#" className="list-link">Dining Chairs</a></p>
-                                                    <p><a href="#" className="list-link">Counter Stools</a></p>
-                                                    <p><a href="#" className="list-link">Barstools</a></p>
-                                                    <p><a href="#" className="list-link">Dining Benches</a></p>
+                                                    <p><Link href="#" className="list-link">In-Stock Dining</Link></p>
+                                                    <p><Link href="#" className="list-link">Dining Chairs</Link></p>
+                                                    <p><Link href="#" className="list-link">Counter Stools</Link></p>
+                                                    <p><Link href="#" className="list-link">Barstools</Link></p>
+                                                    <p><Link href="#" className="list-link">Dining Benches</Link></p>
                                                 </div>
                                             </div>
 
                                             <div className="row p-4">
                                                 <div className="col border-bottom">
                                                     <p className="">Seating</p>
-                                                    <p><a href="#" className="list-link">In-Stock Dining</a></p>
-                                                    <p><a href="#" className="list-link">Dining Chairs</a></p>
-                                                    <p><a href="#" className="list-link">Counter Stools</a></p>
-                                                    <p><a href="#" className="list-link">Barstools</a></p>
-                                                    <p><a href="#" className="list-link">Dining Benches</a></p>
+                                                    <p><Link href="#" className="list-link">In-Stock Dining</Link></p>
+                                                    <p><Link href="#" className="list-link">Dining Chairs</Link></p>
+                                                    <p><Link href="#" className="list-link">Counter Stools</Link></p>
+                                                    <p><Link href="#" className="list-link">Barstools</Link></p>
+                                                    <p><Link href="#" className="list-link">Dining Benches</Link></p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link list-link" href="/product-category">
                                             <p>Dining</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className=' d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>Bedroom</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className=' d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>Lighting</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className=' d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>decor</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className=' d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>rugs</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className=' d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>Outdoor</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className=' d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>office</p>
-                                        </a>
+                                        </Link>
                                         {/* <!-- Drop down for nav-menu --> */}
                                         <div className="mega-box d-none border-top d-xl-block">
                                             <div className="container-fluid bg-white" style={{ height: 'fit-content' }}>
@@ -240,45 +239,44 @@ export const Navbar = () => {
                                                         <div className="row">
                                                             <div className="col py-4">
                                                                 <p className="">OFFICE FURNITURE</p>
-                                                                <p><a href="#" className="list-link">In-Stock Office</a></p>
-                                                                <p><a href="#" className="list-link">Desks</a></p>
-                                                                <p><a href="#" className="list-link">Office Chairs</a></p>
-                                                                <p><a href="#" className="list-link">File Cabinets</a></p>
-                                                                <p><a href="#" className="list-link">Bookcases & Shelving</a></p>
+                                                                <p><Link href="#" className="list-link">In-Stock Office</Link></p>
+                                                                <p><Link href="#" className="list-link">Desks</Link></p>
+                                                                <p><Link href="#" className="list-link">Office Chairs</Link></p>
+                                                                <p><Link href="#" className="list-link">File Cabinets</Link></p>
+                                                                <p><Link href="#" className="list-link">Bookcases & Shelving</Link></p>
                                                             </div>
 
                                                             <div className="col py-4">
                                                                 <p className="">OFFICE FURNITURE</p>
-                                                                <p><a href="#" className="list-link">In-Stock Office</a></p>
-                                                                <p><a href="#" className="list-link">Desks</a></p>
-                                                                <p><a href="#" className="list-link">Office Chairs</a></p>
-                                                                <p><a href="#" className="list-link">File Cabinets</a></p>
-                                                                <p><a href="#" className="list-link">Bookcases & Shelving</a></p>
+                                                                <p><Link href="#" className="list-link">In-Stock Office</Link></p>
+                                                                <p><Link href="#" className="list-link">Desks</Link></p>
+                                                                <p><Link href="#" className="list-link">Office Chairs</Link></p>
+                                                                <p><Link href="#" className="list-link">File Cabinets</Link></p>
+                                                                <p><Link href="#" className="list-link">Bookcases & Shelving</Link></p>
                                                             </div>
 
                                                             <div className="col py-4">
                                                                 <p className="">OFFICE FURNITURE</p>
-                                                                <p><a href="#" className="list-link">In-Stock Office</a></p>
-                                                                <p><a href="#" className="list-link">Desks</a></p>
-                                                                <p><a href="#" className="list-link">Office Chairs</a></p>
-                                                                <p><a href="#" className="list-link">File Cabinets</a></p>
-                                                                <p><a href="#" className="list-link">Bookcases & Shelving</a></p>
+                                                                <p><Link href="#" className="list-link">In-Stock Office</Link></p>
+                                                                <p><Link href="#" className="list-link">Desks</Link></p>
+                                                                <p><Link href="#" className="list-link">Office Chairs</Link></p>
+                                                                <p><Link href="#" className="list-link">File Cabinets</Link></p>
+                                                                <p><Link href="#" className="list-link">Bookcases & Shelving</Link></p>
                                                             </div>
                                                             {/* <!-- product image if image is too big due to limited content give it custom height or set col-4--> */}
                                                             <div className="col">
-                                                                <img
-                                                                    src="https://cld.accentuate.io/263885455531/1617309684692/Nav_Desktop_Storage_430x350.jpg?v=1672146019209&options=w_430"
-                                                                    alt=""
+                                                                <object
+                                                                    data="https://cld.accentuate.io/263885455531/1617309684692/Nav_Desktop_Storage_430x350.jpg?v=1672146019209&options=w_430"
                                                                     className="img-thumbnail p-0 border-0 rounded-0 w-100 h-100"
                                                                 />
-                                                                <a href="#" className="text-dark"
+                                                                <Link href="#" className="text-dark"
                                                                     style={{
                                                                         fontSize: '13px',
                                                                         letterSpacing: '1px',
                                                                         fontWeight: 600
                                                                     }}>
                                                                     <span>Shop items</span>
-                                                                </a>
+                                                                </Link>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -295,11 +293,11 @@ export const Navbar = () => {
                                             <div className="container-fluid h-100 bg-white p-0">
                                                 <div className="w-100 text-white"
                                                     style={{ height: '35px' }}>
-                                                    <img
-                                                        src="https://cld.accentuate.io/263885455531/1617309684692/Nav_Desktop_Storage_430x350.jpg?v=1672146019209&options=w_430"
+                                                    <object
+                                                        data="https://cld.accentuate.io/263885455531/1617309684692/Nav_Desktop_Storage_430x350.jpg?v=1672146019209&options=w_430"
                                                         className="card-img h-100 rounded-0"
                                                         style={{ objectFit: 'cover' }}
-                                                        alt="Living" />
+                                                        />
                                                     <div className="card-img-overlay text-uppercase p-2"
                                                         style={{
                                                             letterSpacing: '1px',
@@ -326,11 +324,11 @@ export const Navbar = () => {
                                                 <div className="row p-4">
                                                     <div className="col border-bottom">
                                                         <p className="">OFFICE FURNITURE</p>
-                                                        <p><a href="#" className="list-link">In-Stock Office</a></p>
-                                                        <p><a href="#" className="list-link">Desks</a></p>
-                                                        <p><a href="#" className="list-link">Office Chairs</a></p>
-                                                        <p><a href="#" className="list-link">File Cabinets</a></p>
-                                                        <p><a href="#" className="list-link">Bookcases & Shelving</a></p>
+                                                        <p><Link href="#" className="list-link">In-Stock Office</Link></p>
+                                                        <p><Link href="#" className="list-link">Desks</Link></p>
+                                                        <p><Link href="#" className="list-link">Office Chairs</Link></p>
+                                                        <p><Link href="#" className="list-link">File Cabinets</Link></p>
+                                                        <p><Link href="#" className="list-link">Bookcases & Shelving</Link></p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -338,9 +336,9 @@ export const Navbar = () => {
                                     </li>
                                     <hr className="d-block d-xl-none" />
                                     <li className="nav-item d-flex justify-content-between">
-                                        <a className="nav-link  list-link" href="/bedroom-furniture.html">
+                                        <Link className="nav-link  list-link" href="/product-category">
                                             <p>specials</p>
-                                        </a>
+                                        </Link>
                                         <ChevronRight className='d-block d-xl-none icon-dark'/>
                                     </li>
                                     <hr className="d-block d-xl-none" />
@@ -355,7 +353,7 @@ export const Navbar = () => {
                                     width: "fit-content"
                                 }}
                                     className="d-flex flex-row align-items-center gap-2 gap-md-3 gap-xl-4 list">
-                                    <a href="#" className="text-decoration-none list-link"
+                                    <Link href="#" className="text-decoration-none list-link"
                                     onClick={toggleLargeScreenSearchDialog}
                                     // onclick="toggleLargeScreenSearchDialog()"
                                     >
@@ -364,23 +362,23 @@ export const Navbar = () => {
                                         }}>
                                             <Search className='d-none d-xl-inline'/>
                                         </p>
-                                    </a>
-                                    <a href="/account/login.html" className="list-link">
+                                    </Link>
+                                    <Link href="/login" className="list-link">
                                         <p style={{ fontSize: "20px" }}>
                                             <Person/>
                                         </p>
-                                    </a>
-                                    <a href="/previous-orders.html" className="list-link">
+                                    </Link>
+                                    <Link href="/previous-orders" className="list-link">
                                         <p style={{ fontSize: "20px" }}>
                                             <BagCheck/>
                                         </p>
-                                    </a>
-                                    <a href="/cart.html" className="list-link">
+                                    </Link>
+                                    <Link href="/cart" className="list-link">
                                         <p style={{ fontSize: '20px' }}>
                                             <Bag/>
                                             <span className="badge p-0 text-black fw-lighter">2</span>
                                         </p>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

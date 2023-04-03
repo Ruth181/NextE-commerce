@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC, Fragment } from "react";
 import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 
@@ -77,7 +78,7 @@ export const ProductList :FC = () => {
                         {[0, 1, 2, 3].map((_: any, i: number) =>
                             <div key={i} className="col-12 col-md-6 col-lg-6 col-xl-4 p-0 px-sm-2">
                                 {/* <!-- section contains to images for hover effect --> */}
-                                <a href="/products/product-detail.html"
+                                <Link href="/product-detail"
                                     className="text-decoration-none text-reset">
                                     <section className="w-100 hover-animation" style={{ height: '18rem' }}>
                                         <object
@@ -90,7 +91,7 @@ export const ProductList :FC = () => {
                                             data="https://cdn.arhaus.com/product/StandardV2/45RIGBCFKGKT_FC210824.jpg"
                                             width="100%"
                                             height="100%" />
-                                        {/* <!-- Tag container --> */}
+                                        {/* Tag container */}
                                         <div className="position-absolute rounded-4 text-black py-1 px-3"
                                             style={{
                                                 backgroundColor: '#EDECE8',
@@ -113,7 +114,7 @@ export const ProductList :FC = () => {
                                         </div>
                                         <p style={{ color: '#89331C' }}>$2,199.00</p>
                                     </section>
-                                </a>
+                                </Link>
                                 {/* <!-- color frames --> */}
                                 <section 
                                 id="sectionFrame-1" 
@@ -124,13 +125,13 @@ export const ProductList :FC = () => {
                                         style={{ height: '25px', width: '25px'}}
                                         onClick={() => displayColorName('colorName', 'Brown', 'sectionFrame-1')}>
                                         <div
-                                            className="border"
-                                            onMouseOver={() => displayColorNameOnHover('colorName', 'Brown')}
-                                            style={{
-                                                width: '100%',
-                                                height: '20px',
-                                                backgroundColor: '#553D37'
-                                            }}></div>
+                                        className="border"
+                                        onMouseOver={() => displayColorNameOnHover('colorName', 'Brown')}
+                                        style={{
+                                            width: '100%',
+                                            height: '20px',
+                                            backgroundColor: '#553D37'
+                                        }}></div>
                                     </div>
                                     <div
                                         id="Snow"
@@ -138,12 +139,12 @@ export const ProductList :FC = () => {
                                         onClick={() => displayColorName('colorName', 'Snow', 'sectionFrame-1')}
                                         onMouseOver={() => displayColorNameOnHover('colorName', 'Snow')}>
                                         <div
-                                            className="border"
-                                            style={{
-                                                width: '100%',
-                                                height: '20px',
-                                                backgroundColor: '#D6D3D4'
-                                            }}></div>
+                                        className="border"
+                                        style={{
+                                            width: '100%',
+                                            height: '20px',
+                                            backgroundColor: '#D6D3D4'
+                                        }}></div>
                                     </div>
                                     <div
                                         id="Ebony"
@@ -151,12 +152,12 @@ export const ProductList :FC = () => {
                                         onClick={() => displayColorName('colorName', 'Ebony', 'sectionFrame-1')}
                                         onMouseOver={() => displayColorNameOnHover('colorName', 'Ebony')}>
                                         <div
-                                            className="border"
-                                            style={{
-                                                width: '100%',
-                                                height: '20px',
-                                                backgroundColor: '#313131'
-                                            }}></div>
+                                        className="border"
+                                        style={{
+                                            width: '100%',
+                                            height: '20px',
+                                            backgroundColor: '#313131'
+                                        }}></div>
                                     </div>
                                 </section>
                                 <br />

@@ -6,13 +6,15 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export const HomeCarousel: FC = () => {
+type Props={
+
+}
+export const HomeCarousel: FC<Props> = () => {
     return (
         <Fragment>
             <div className="bg-white mb-5"
-                data-aos="fade-in"
-                data-aos-delay="500"
-                data-aos-duration="1000">
+                //data-aos="fade-in"
+                >
                 
                 <Swiper
                 slidesPerView={3.2}

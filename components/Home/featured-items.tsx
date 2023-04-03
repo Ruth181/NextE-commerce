@@ -5,9 +5,8 @@ export const FeaturedItems: FC = () => {
     return (
         <Fragment>
             <div className="container-fluid p-0 mt-5"
-                data-aos="zoom-in"
-                data-aos-duration="1000"
-                data-aos-delay="500">
+                //data-aos="zoom-in"
+                >
                 <div className="card m-0 rounded-0 w-100">
                     <object
                         data="https://cdn.shopify.com/s/files/1/0507/9017/0795/files/1.24_HP_Dining_Desktop_1920x1080_14f5db7c-17cf-4f94-be33-b76256411756_1440x.jpg?v=1674500077"

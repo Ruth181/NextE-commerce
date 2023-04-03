@@ -5,12 +5,16 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export const RelatedItemsCarousel : FC = () => {
+type Props = {
+    header : string,
+    //array
+}
+export const RelatedItemsCarousel : FC<Props> = ({header}) => {
     return(
         <Fragment>
             <div className="my-5">
                 <p className="text-uppercase fw-lighter lead"
-                style={{padding : '0px 2.5rem'}}>Frequently viewed</p>
+                style={{padding : '0px 2.5rem'}}>{header}</p>
              <Swiper
                 slidesPerView={3}
                 spaceBetween={20}

@@ -2,9 +2,10 @@ export const NewArrivals = () => {
     return (
         <div className="mt-xl-0 container-fluid p-0"
             style={{zIndex: 10}}
-            data-aos="zoom-in"
-            data-aos-duration="1000"
-            data-aos-delay="500">
+            // data-aos="zoom-in"
+            // data-aos-duration="1000"
+            // data-aos-delay="500"
+            >
             <div className="w-100 m-0 rounded-0">
                 {/* <!-- image for larger screen --> */}
                 <object

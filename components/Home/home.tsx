@@ -23,7 +23,7 @@ const HomeComponent :FC = () => {
 
                     <DiscountedItems/>
 
-                    <RelatedItemsCarousel/>
+                    <RelatedItemsCarousel header="Frequently viewed"/>
                 </section>
             </div>
         </Layout>
