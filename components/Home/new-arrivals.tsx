@@ -21,8 +21,7 @@ export const NewArrivals = () => {
                     className="card-img-overlay 
                     d-flex justify-content-center
                     justify-content-lg-start 
-                    align-items-top
-                    align-items-lg-center">
+                    align-items-center">
                     <div className="w-50 p-2 text-dark my-5 text-center py-1 spacing">
                         <p className="text-uppercase fs-6 fw-semibold">Our most remarkable new<br />collection</p>
                         <p className="text-uppercase display-6">INTRODUCING <br />POLANCO</p>

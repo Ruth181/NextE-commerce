@@ -1,8 +1,23 @@
 import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      //refetchOnWindowFocus : false,
+      retry: 2,
+      retryDelay: (attemptIndex : any) => Math.min(1000 * 2 ** attemptIndex, 30000)
+    }
+  }
+});
 // AOS.init({
 //   disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
 //   startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
@@ -21,6 +36,12 @@ import type { AppProps } from 'next/app'
 //   mirror: false, // whether elements should animate out while scrolling past them
 //   anchorPlacement: 'bottom-top',
 // });
+
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return(
+    <QueryClientProvider client={queryClient}>
+      <Component {...pageProps} />
+      <ToastContainer/>
+    </QueryClientProvider>
+  );
 }
