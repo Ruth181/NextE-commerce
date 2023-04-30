@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import HomeComponent from '@/components/Home/home'
+import axios from 'axios';
 //const inter = Inter({ subsets: ['latin'] })
 
 
-export default function Home() {
+export default function Home({data} : any) {
+  console.log({data});
   return (
     <>
       <Head>
@@ -14,7 +16,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className='w-full'>
-          <HomeComponent/>
+          <HomeComponent data={data}/>
       </main>
       {/* <main className={styles.main}>
         <div className={styles.description}>
@@ -122,4 +124,22 @@ export default function Home() {
       </main> */}
     </>
   )
+}
+
+export async function getServerSideProps(){
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOST}product-category?pageNumber=1&pageSize=10`,
+  {
+    headers:{
+      'Content-Type' : 'application/json',
+      'Authorization' : `Bearer ${process.env.NEXT_PUBLIC_USER_TOKEN}`
+    },
+    //httpsAgent: httpsAgent,
+  }).catch(err => err);
+
+  const {data} = await response.data;
+  return{
+    props:{
+      data
+    }
+  }
 }

@@ -2,8 +2,12 @@ import Link from "next/link";
 import { FC, Fragment } from "react";
 import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 
+type Props={
+    data : any
+}
 // this component is the products list, wherever its needed props can be parsed to it to display something new for a new page
-export const ProductList :FC = () => {
+export const ProductList :FC<Props> = ({data}) => {
+    console.log({data});
     // display color Name based on color frame chosen displayColorName
     function displayColorNameOnHover(
         elementId : string,
@@ -53,7 +57,7 @@ export const ProductList :FC = () => {
             <section className="container py-4" style={{zIndex : 10}}>
 
                 {/* <!-- total count and filter section --> */}
-                <section className="container-fluid border-top pt-4">
+                {/* <section className="border-top pt-4">
                     <div className="d-flex flex-row gap-4 justify-content-start justify-content-md-end lead fw-normal align-items-center"
                         style={{fontSize : '11.5px'}}>
                         <div style={{color : '#707070'}}>78&nbsp;pieces</div>
@@ -69,26 +73,31 @@ export const ProductList :FC = () => {
                         </select>
 
                     </div>
-                </section>
+                </section> */}
 
                 {/* <!-- Bedroom furniture images --> */}
-                <section className="container-fluid my-5">
+                <section className="container-fluid my-4">
                     {/* <!-- grid- image -section --> */}
                     <div id="bedroom-furniture" className="row bg-white text-dark">
-                        {[0, 1, 2, 3].map((_: any, i: number) =>
+                        {data?.productsInThisCategory.map((value: any, i: number) =>
                             <div key={i} className="col-12 col-md-6 col-lg-6 col-xl-4 p-0 px-sm-2">
                                 {/* <!-- section contains to images for hover effect --> */}
-                                <Link href="/product-detail"
+                                <Link href={{
+                                    pathname : "/product-detail",
+                                    query : `name=${value.name}?uuid=${value.id}`
+                                }}
                                     className="text-decoration-none text-reset">
                                     <section className="w-100 hover-animation" style={{ height: '18rem' }}>
                                         <object
                                             className="img-back"
-                                            data="https://cdn.arhaus.com/product/StandardV2/45WYLERQN3_J220207.jpg"
+                                            //data={value?.imagesForThisProduct[0]?.url}                                        }`}
                                             width="100%"
-                                            height="100%" />
+                                            height="100%" 
+                                            data={value?.imagesForThisProduct[1]?.url}/>
+
                                         <object
                                             className="img-front"
-                                            data="https://cdn.arhaus.com/product/StandardV2/45RIGBCFKGKT_FC210824.jpg"
+                                            data={value?.imagesForThisProduct[0]?.url}
                                             width="100%"
                                             height="100%" />
                                         {/* Tag container */}
@@ -105,18 +114,18 @@ export const ProductList :FC = () => {
                                     <section style={{ letterSpacing: '1px', fontSize: '15px' }}
                                         className="py-1 fw-lighter d-flex justify-content-between text-capitalize">
                                         <div>
-                                            <p>Rigby Bed</p>
-                                            <span id="colorName"
+                                            <p>{value.name}</p>
+                                            {/* <span id="colorName"
                                                 className="text-muted text-uppercase"
                                                 style={{ fontSize: '15px' }}>
                                                 Ebony
-                                            </span>
+                                            </span> */}
                                         </div>
-                                        <p style={{ color: '#89331C' }}>$2,199.00</p>
+                                        <p style={{ color: '#89331C' }}>#{value.unitPrice}</p>
                                     </section>
                                 </Link>
                                 {/* <!-- color frames --> */}
-                                <section 
+                                {/* <section 
                                 id="sectionFrame-1" 
                                 className="my-2 d-flex flex-row gap-1 align-items-center"
                                 style={{maxWidth : '50%'}}>
@@ -159,7 +168,7 @@ export const ProductList :FC = () => {
                                             backgroundColor: '#313131'
                                         }}></div>
                                     </div>
-                                </section>
+                                </section> */}
                                 <br />
                             </div>
                         )}

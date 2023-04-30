@@ -6,7 +6,10 @@ import { FeaturedItems } from "./featured-items";
 import { DiscountedItems } from "./discounted-items";
 import { RelatedItemsCarousel } from "../Carousel/related-items-carousel";
 
-const HomeComponent :FC = () => {
+type props={
+    data : any[];
+}
+const HomeComponent :FC<props> = ({data}) => {
     return(
         <Layout className="container-fluid p-0">
             <div>
@@ -17,7 +20,7 @@ const HomeComponent :FC = () => {
                     style={{fontSize : '30px', fontWeight : 400}}>
                         Explore
                     </p>
-                    <HomeCarousel/>
+                    <HomeCarousel mainCategories={data}/>
 
                     <FeaturedItems/>
 
