@@ -15,3 +15,25 @@ export interface AxiosPostInterface{
     path : string;
     body : any;
 }
+
+export interface CheckoutUserInterface{
+    email : string;
+    firstName : string;
+    lastName : string;
+    address : string;
+    city : string;
+    state1 : string;
+    phoneNumber : string;
+}
+
+export interface ReduxStoreSliceType{
+    id : string;
+    name : string;
+    url : string;
+    unitPrice : number;
+    quantity : number;
+}
+
+export interface ReduxSliceGlobalType{
+    data : ReduxStoreSliceType[];
+}

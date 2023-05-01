@@ -6,6 +6,8 @@ import {
 } from '@tanstack/react-query'
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
 // import AOS from 'aos';
 // import 'aos/dist/aos.css';
 
@@ -40,8 +42,10 @@ const queryClient = new QueryClient({
 export default function App({ Component, pageProps }: AppProps) {
   return(
     <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
       <Component {...pageProps} />
       <ToastContainer/>
+      </Provider>
     </QueryClientProvider>
   );
 }

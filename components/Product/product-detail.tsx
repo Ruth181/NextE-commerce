@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, useState} from 'react';
 import Layout from '../Layout';
 import  { ChevronDown, Heart, HeartFill } from 'react-bootstrap-icons';
 import { RelatedItemsCarousel } from '../Carousel/related-items-carousel';
@@ -6,10 +6,11 @@ import { useRouter, NextRouter } from 'next/router';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import Link from 'next/link';
+import {useDispatch}  from 'react-redux';
+import { ReduxStoreSliceType } from '@/utils/types';
+import { addItemsToCart } from '@/redux/slice';
+//import { AnyAction, Dispatch } from 'redux';
 
-type Props={
-
-}
 
 let extractName : string[] = [''];
 let extractUUID : string[] = [''];
@@ -18,7 +19,6 @@ export const ProductDetail :FC = () =>{
     const router : NextRouter = useRouter();
     const queryString : string = router.query.name as string;
 
-    
     if(typeof queryString !== 'string'){
         return(
             <p></p>
@@ -27,6 +27,10 @@ export const ProductDetail :FC = () =>{
 
     extractName = queryString.split('?');
     extractUUID = queryString.split('=');
+    
+    const [p_quantity, setQuantity] = useState<number>(0)
+    const dispatch = useDispatch();
+
     const { data : queryResponseData, isLoading, isFetched } = useQuery(
         {
             queryKey: ['find-product-by-id'],
@@ -34,13 +38,30 @@ export const ProductDetail :FC = () =>{
                 return axios.get(`${process.env.NEXT_PUBLIC_BACKEND_HOST}product/${extractUUID[1]}`,{
                     headers : {
                         'Content-Type' : 'application/json',
-                        //'Authorization' : `Bearer ${process.env.NEXT_PUBLIC_USER_TOKEN}`
+                        //'Authorization' : queryResponseData?.data?.data?.quantity `Bearer ${process.env.NEXT_PUBLIC_USER_TOKEN}`
                     }
                 }).catch(err => err);
             },
             refetchOnWindowFocus: false
         }
     );
+    const productQuantity = [...Array(10)];
+
+    const onChangeProductQuantityHandler = ({target} : React.ChangeEvent<HTMLSelectElement>) => {
+        const {value : quantity} = target;
+        setQuantity(parseInt(quantity) + 1);
+    }
+
+    const onClickDispatchAddToCart = ({id, name, url, unitPrice, quantity} : ReduxStoreSliceType) => {
+        dispatch(addItemsToCart({
+            id,
+            name,
+            url,
+            unitPrice,
+            quantity
+        }));
+    }
+
     if(isLoading){
         return <p></p>
     }
@@ -85,7 +106,17 @@ export const ProductDetail :FC = () =>{
 
                             <div className="d-flex justify-content-between">
                                 <div className="w-25 d-flex flex-row justify-content-start align-items-center">
-                                    <div style={{fontSize: '15px'}} className="text-uppercase">QTY:&nbsp;{queryResponseData.data?.data?.quantity}</div>
+                                    <div style={{fontSize: '15px'}} className="text-uppercase">QTY:</div>
+                                    <select id="qty-select"
+                                        className="border-0 shadow-none"
+                                        aria-label=".form-select-sm example"
+                                        onChange={onChangeProductQuantityHandler}
+                                        >
+                                        {productQuantity && productQuantity.map((_:any, i:number) => 
+                                            <option value={i++} selected>{i++}</option>
+                                        )}
+                                        
+                                    </select>
                                 </div>
                                 <p className=" text-capitalize text_primary fw-semibold" style={{fontSize: '12px'}}>In&nbsp;Stock</p>
                             </div>
@@ -97,14 +128,15 @@ export const ProductDetail :FC = () =>{
                             className="w-100 text-uppercase btn-primary text-center fw-bold shadow-none"
                             data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasNavbar-1"
-                            aria-controls="offcanvasNavbar-1">
+                            aria-controls="offcanvasNavbar-1"
+                            onClick={() => onClickDispatchAddToCart({
+                                id : queryResponseData?.data?.data.id,
+                                name : queryResponseData?.data?.data?.name,
+                                url : queryResponseData?.data?.data?.imagesForThisProduct[0]?.url,
+                                unitPrice : parseInt(queryResponseData?.data?.data?.unitPrice),
+                                quantity  : p_quantity
+                            })}>
                             <span>Add to bag</span>
-                        </button>
-                        <button
-                            className="bg-white mt-2 text_primary w-100 text-center text-capitalize text-decoration-underline py-2"
-                            style={{fontSize: '13px', letterSpacing: '1.5px'}}>
-                            <Heart className='icon-dark'/>
-                            Add to wishlist
                         </button>
 
                         {/* <!-- Shopping bag drawer --> */}
@@ -135,24 +167,15 @@ export const ProductDetail :FC = () =>{
 
                                             <div className="d-flex justify-content-between my-2">
                                                 <div className="d-flex flex-row justify-content-center align-items-center">
-                                                    <div style={{fontSize: '13px'}} className="text-uppercase">QTY:</div>
-                                                    <select id="qty-select"
-                                                        className="border-0 shadow-none"
-                                                        aria-label=".form-select-sm example"
-
-                                                        >
-                                                        <option value="1" selected>1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="1">4</option>
-                                                        <option value="2">5</option>
-                                                        <option value="3">6</option>
-                                                    </select>
+                                                    <div style={{fontSize: '13px'}} className="text-uppercase">
+                                                        QTY:&nbsp;{p_quantity}
+                                                    </div>
                                                 </div>
 
                                                 <div
                                                     className="fw-normal 
                                                     text-capitalize 
+                                                    invisible
                                                     text-decoration-underline"
                                                     style={{fontSize: '12px', cursor: 'pointer'}}>
                                                     Remove
@@ -166,8 +189,8 @@ export const ProductDetail :FC = () =>{
                                 <div
                                     className="w-100 d-flex justify-content-between bg-white align-items-center border-bottom"
                                     style={{fontSize: '14px', padding : '1rem', letterSpacing : '0px'}}>
-                                    <p>Subtotal (8 items)</p>
-                                    <p style={{paddingRight: '5px'}}>$2,742.99</p>
+                                    <p>Subtotal ({p_quantity})</p>
+                                    <p style={{paddingRight: '5px'}}>#{queryResponseData?.data?.data?.unitPrice * p_quantity}</p>
                                 </div>
                                 <Link href="/cart">
                                     <button
