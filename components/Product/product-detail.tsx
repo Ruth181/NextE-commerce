@@ -52,9 +52,9 @@ export const ProductDetail :FC = () =>{
         setQuantity(parseInt(quantity) + 1);
     }
 
-    const onClickDispatchAddToCart = ({id, name, url, unitPrice, quantity} : ReduxStoreSliceType) => {
+    const onClickDispatchAddToCart = ({productId, name, url, unitPrice, quantity} : ReduxStoreSliceType) => {
         dispatch(addItemsToCart({
-            id,
+            productId,
             name,
             url,
             unitPrice,
@@ -130,7 +130,7 @@ export const ProductDetail :FC = () =>{
                             data-bs-target="#offcanvasNavbar-1"
                             aria-controls="offcanvasNavbar-1"
                             onClick={() => onClickDispatchAddToCart({
-                                id : queryResponseData?.data?.data.id,
+                                productId : queryResponseData?.data?.data.id,
                                 name : queryResponseData?.data?.data?.name,
                                 url : queryResponseData?.data?.data?.imagesForThisProduct[0]?.url,
                                 unitPrice : parseInt(queryResponseData?.data?.data?.unitPrice),

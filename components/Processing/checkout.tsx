@@ -1,8 +1,13 @@
-import { CheckoutUserInterface } from "@/utils/types";
+import { CheckoutUserInterface, ReduxStoreSliceType } from "@/utils/types";
+import { getToken } from "@/utils/util-funtions";
+import { useMutation } from "@tanstack/react-query";
+import axios, { AxiosError } from "axios";
 import Link from "next/link";
+import { NextRouter, useRouter } from "next/router";
 import { FC, useState } from "react";
 import { ChevronLeft, ChevronRight } from "react-bootstrap-icons";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 let totalPrice: number = 0.0;
 
@@ -18,47 +23,54 @@ export const Checkout: FC = () => {
         phoneNumber: ''
     });
 
+    const router : NextRouter = useRouter();
+
     const selector = useSelector((state: any) => state.store.data);
+    const mutation = useMutation({
+        mutationFn : (payload : any) => {
+            return axios.post(`${process.env.NEXT_PUBLIC_BACKEND_HOST}order/validate/order-before-payment`, payload,{
+               headers:{
+                'Content-Type' : 'application/json',
+                'Authorization' : `Bearer ${getToken() as string}`
+               },
+            })
+        },
+        onSuccess : data => {
+            console.log(data);
+            toast.success('Request Sent');
+        },
+        onError : (err : any)  => {
+            if(err?.response?.data?.code === 403){
+                toast.error(err?.response?.data?.message);
+                router.push('/login');
+            }
+            toast.error(err?.response?.data?.message);
+        }
+    });
 
-    const onChangeEmailHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: email } = target;
-        setState({ ...state, email });
+    const {mutate,isLoading,isSuccess} = mutation;
+
+    const onClickCheckoutHandler = () => {
+        //check if user is logged in b4
+        //if user is logged in send request  baba yetu & sogno di volare
+        if(typeof getToken() !== 'string'){
+            alert('Please Sign in before Checking out');
+            router.push('/login');
+            return;
+        }
+        const products : any[] = selector?.map(({productId,quantity} : ReduxStoreSliceType) => {
+            return{
+                productId,
+                quantity
+            }
+        });
+        mutate({products : products});
     }
 
-    const onChangeFirstNameHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: firstName } = target;
-        setState({ ...state, firstName });
-    }
-
-    const onChangeLastNameHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: lastName } = target;
-        setState({ ...state, lastName });
-    }
-
-    const onChangeAddressHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: address } = target;
-        setState({ ...state, address });
-    }
-
-    const onChangeCityHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: city } = target;
-        setState({ ...state, city });
-    }
-
-    const onChangeStateHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: state1 } = target;
-        setState({ ...state, state1 });
-    }
-
-    const onChangePhoneNumberHandler = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-        const { value: phoneNumber } = target;
-        setState({ ...state, phoneNumber });
-    }
-
-
+    console.log({selector});
     return (
         <div className="container-fluid">
-            <div className="d-flex flex-md-row flex-column-reverse">
+            <div className="d-flex flex-md-row justify-content-center">
                 {/* <!-- checkout form --> */}
                 <div className="col-12 col-md-6 bg-white p-3 p-md-5">
                     <p className="display-5 text-center">
@@ -90,95 +102,10 @@ export const Checkout: FC = () => {
                             <Link href="/login" className="text-decoration-none text-reset">Login</Link>
                         </p>
                     </div>
-                    {/* <!-- form begins here --> */}
-                    <div className="w-100">
-                        <div className="mb-3">
-                            <input type="email"
-                                className="form-control rounded-2 border shadow-none"
-                                style={{ padding: '0.8rem' }}
-                                id="formGroupExampleInput2"
-                                placeholder="Email"
-                                onChange={onChangeEmailHandler} />
-                        </div>
-                        {/* <!-- shipping address --> */}
-                        <form action="">
-                            <div className="row g-3">
-                                <div className="col-12 col-sm-6">
-                                    <input type="text"
-                                        className="form-control rounded-2 border shadow-none"
-                                        style={{ padding: '0.8rem' }}
-                                        placeholder="First name"
-                                        aria-label="First name"
-                                        onChange={onChangeFirstNameHandler} />
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <input type="text"
-                                        className="form-control rounded-2 border shadow-none"
-                                        style={{ padding: '0.8rem' }}
-                                        placeholder="Last name"
-                                        aria-label="Last name"
-                                        onChange={onChangeLastNameHandler} />
-                                </div>
-                            </div>
-                            <div className="col-12">
-                                <input type="text"
-                                    className="form-control rounded-2 border my-3 shadow-none"
-                                    style={{ padding: '0.8rem' }}
-                                    id="inputAddress"
-                                    placeholder="Address"
-                                    onChange={onChangeAddressHandler} />
-                            </div>
-
-                            {/* <!-- city code state --> */}
-                            <div className="row gx-3 gy-2 align-items-center mb-3">
-                                <div className="col-12 col-sm-6">
-                                    <input
-                                        type="text"
-                                        className="form-control rounded-2 border shadow-none"
-                                        style={{ padding: '0.8rem' }}
-                                        id="specificSizeInputName"
-                                        placeholder="City"
-                                        onChange={onChangeCityHandler} />
-                                </div>
-                                <div className="col-12 col-sm-6">
-                                    <input
-                                        type="text"
-                                        className="form-control rounded-2 border shadow-none"
-                                        style={{ padding: '0.8rem' }}
-                                        id="specificSizeInputName"
-                                        placeholder="state"
-                                        onChange={onChangeStateHandler} />
-                                </div>
-                            </div>
-
-                            <div className="w-100">
-                                <input type="text"
-                                    className="form-control rounded-2 border mb-3 shadow-none"
-                                    style={{ padding: '0.8rem' }}
-                                    id="phone"
-                                    placeholder="Phone"
-                                    onChange={onChangePhoneNumberHandler} />
-                            </div>
-                        </form>
-                        {/* <!-- return to cart or submit checkout form --> */}
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                            <Link href="/cart" className="text-decoration-none">
-                                <div className="fw-normal text-black">
-                                    <span><ChevronLeft />Return to cart</span>
-                                </div>
-                            </Link>
-                            <button className="btn-primary p-3 rounded">
-                                Continue
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                {/* <!-- details for total --> */}
-                <div
-                    className="d-none d-md-inline col-md-6 p-3 p-md-5 border-left"
-                    style={{ backgroundColor: '#eee' }}
-                >
-                    {/* <!-- list of products --> */}
+                    <div
+                    className="col py-3 py-md-5 border-left"
+                    //style={{ backgroundColor: '#eee' }}
+                    >
                     {selector && selector.map((data: any, i: number) =>
                     {
                         totalPrice += (data.unitPrice * data.quantity);
@@ -225,7 +152,22 @@ export const Checkout: FC = () => {
                             </div>
                         </div>
                     </div>
+                    </div>
+
+                    <div className="d-flex justify-content-between align-items-center my-4">
+                        <Link href="/cart" className="text-decoration-none">
+                            <div className="fw-normal text-black">
+                                <span><ChevronLeft />Return to cart</span>
+                            </div>
+                        </Link>
+                        <button className="btn-primary p-3 rounded"
+                        onClick={onClickCheckoutHandler}>
+                            Continue
+                        </button>
+                    </div>
+
                 </div>
+               
             </div>
 
         </div>

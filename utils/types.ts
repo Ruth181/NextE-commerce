@@ -27,7 +27,7 @@ export interface CheckoutUserInterface{
 }
 
 export interface ReduxStoreSliceType{
-    id : string;
+    productId : string;
     name : string;
     url : string;
     unitPrice : number;

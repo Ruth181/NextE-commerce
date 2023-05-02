@@ -47,3 +47,8 @@ export function validatePhoneNumberString(numberString: string): boolean {
     const pattern = /^[+234][0-9]{10}/g;
     return pattern.test(numberString);
 }
+
+
+export function getToken() : string | null{
+   return localStorage.getItem('token');
+}

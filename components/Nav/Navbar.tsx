@@ -3,11 +3,14 @@ import {Search, Person, BagCheck, Bag, ChevronRight, ChevronLeft} from 'react-bo
 import { NavSearchComponent } from './nav-search-component';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 
 type Props={
     data : any
 }
 export const Navbar : FC<Props> = ({data} : any) => {
+
+    const selector = useSelector((state : any) => state.store.data);
 
     const toggleLargeScreenSearchDialog = () : void => {
         const div :HTMLDivElement = document.getElementById('search-div') as HTMLDivElement;
@@ -119,7 +122,7 @@ export const Navbar : FC<Props> = ({data} : any) => {
                                     <Link href="/cart" className="list-link">
                                         <p style={{ fontSize: '20px' }}>
                                             <Bag/>
-                                            <span className="badge p-0 text-black fw-lighter">2</span>
+                                            <span className="badge p-0 text-black fw-lighter">{selector.length > 0 && selector.length}</span>
                                         </p>
                                     </Link>
                                 </div>
