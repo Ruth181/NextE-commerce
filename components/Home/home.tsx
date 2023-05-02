@@ -47,7 +47,13 @@ const HomeComponent :FC<props> = ({data}) => {
 
                     <FeaturedItems/>
 
-                    <DiscountedItems/> */}
+                    <DiscountedItems/>
+
+                    make payment
+                    refresh on query change in url
+                    total price is not accurate
+                    remove select quantity
+                    */}
 
                     {/* <RelatedItemsCarousel header="Frequently viewed"/> */}
                 </section>

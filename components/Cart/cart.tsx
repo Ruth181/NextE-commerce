@@ -45,40 +45,41 @@ export const CartShoppingBag: FC = () => {
                                 </thead>
                                 <tbody className="">
                                     {selector && selector.map((data: ReduxStoreSliceType, i: number) =>{
-                                        totalPriceVar += (data.unitPrice * data.quantity);
+                                        // const price = data.unitPrice * data.quantity;
+                                        // totalPriceVar += price;
                                         return(
                                             <tr key={i}>
-                                            <td id="product-row">
-                                                <div className="row">
-                                                    <div className="col-md-4 py-3">
-                                                        <img src={data.url}
-                                                            className="d-block d-lg-inline w-100" />
-                                                    </div>
-                                                    <div className="col-md-7">
-                                                        <div className="fw-lighter" style={{ fontSize: '15px' }}>
-                                                            <p className="text-capitalize pt-3 pb-2 fw-normal">{data.name}</p>
-                                                            <p className="text-capitalize fw-normal">Instock</p>
+                                                <td id="product-row">
+                                                    <div className="row">
+                                                        <div className="col-md-4 py-3">
+                                                            <img src={data.url}
+                                                                className="d-block d-lg-inline w-100" />
+                                                        </div>
+                                                        <div className="col-md-7">
+                                                            <div className="fw-lighter" style={{ fontSize: '15px' }}>
+                                                                <p className="text-capitalize pt-3 pb-2 fw-normal">{data.name}</p>
+                                                                <p className="text-capitalize fw-normal">Instock</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td className="align-top py-3" style={{ color: '#89331C' }}>#{data.unitPrice}</td>
-                                            <td className="align-top py-3">
+                                                </td>
+                                                <td className="align-top py-3" style={{ color: '#89331C' }}>#{data.unitPrice}</td>
+                                                <td className="align-top py-3">
 
-                                                <div className="d-flex flex-row justify-content-start align-items-center ">
-                                                    <div style={{ fontSize: '15px' }} className="text-uppercase">QTY:&nbsp;{data.quantity}</div>
-                                                </div>
+                                                    <div className="d-flex flex-row justify-content-start align-items-center ">
+                                                        <div style={{ fontSize: '15px' }} className="text-uppercase">QTY:&nbsp;{data.quantity}</div>
+                                                    </div>
 
-                                                <button className="fw-normal 
-                                                    text-capitalize
-                                                    py-3 
-                                                    text-decoration-underline bg-white" 
-                                                    style={{ fontSize: '14px', cursor: 'pointer' }}>
-                                                    Remove
-                                                </button>
-                                            </td>
-                                            <td className="align-top py-3 fw-semibold">#{data.unitPrice * data.quantity}</td>
-                                        </tr>
+                                                    <button className="fw-normal 
+                                                        text-capitalize
+                                                        py-3 
+                                                        text-decoration-underline bg-white" 
+                                                        style={{ fontSize: '14px', cursor: 'pointer' }}>
+                                                        Remove
+                                                    </button>
+                                                </td>
+                                                <td className="align-top py-3 fw-semibold">#{data.unitPrice * data.quantity}</td>
+                                            </tr>
                                         );
                                     }
                                     )}

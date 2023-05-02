@@ -67,7 +67,11 @@ export const Navbar : FC<Props> = ({data} : any) => {
                                         {/* <!-- <img src="/images/siloette.jpeg" className="rounded-2" alt="" width="40" height="40"> --> */}
                                     </Link>
                                 </p>
-                                <button type="button" className="btn-close shadow-none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                                <button 
+                                type="button" 
+                                className="btn-close shadow-none" 
+                                data-bs-dismiss="offcanvas" 
+                                aria-label="Close"></button>
                             </div>
                             <div className="offcanvas-body">
                                 {/* navbar links */}
@@ -77,10 +81,15 @@ export const Navbar : FC<Props> = ({data} : any) => {
                                             pathname :'/product-category',
                                             query : `name=${category.name}?uuid=${category.id}`
 
-                                        }} className="nav-link list-link" aria-current="page">
-                                            <hr className="d-block d-xl-none" />
+                                        }} 
+                                        className="text-decoration-none" 
+                                        aria-current="page"
+                                        data-bs-dismiss="offcanvas" 
+                                        aria-label="Close"
+                                        >
+                                            <hr className="d-block d-xl-none"/>
                                             <li className="nav-item d-flex justify-content-between">
-                                                <p>{category.name}</p>
+                                                <p className='nav-link list-link'>{category.name}</p>
                                                 <ChevronRight 
                                                 className='d-block d-xl-none'
                                                 />
